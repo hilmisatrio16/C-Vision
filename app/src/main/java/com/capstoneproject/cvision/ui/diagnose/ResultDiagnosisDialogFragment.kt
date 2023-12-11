@@ -7,11 +7,13 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.FrameLayout
 import androidx.annotation.StringRes
 import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.databinding.FragmentResultBinding
 import com.capstoneproject.cvision.databinding.FragmentResultDiagnosisDialogBinding
 import com.capstoneproject.cvision.ui.diagnose.adapter.SectionPageDiagnosisAdapter
+import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -23,7 +25,6 @@ class ResultDiagnosisDialogFragment(uri: Uri, percentage: String, classResult: S
     private val imageUri = uri
     private val percentageResult = percentage
     private val result = classResult
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -37,7 +38,7 @@ class ResultDiagnosisDialogFragment(uri: Uri, percentage: String, classResult: S
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.shapeableImageView.setImageURI(imageUri)
+        binding.imageResult.setImageURI(imageUri)
 
         val sectionsPagerAdapter = SectionPageDiagnosisAdapter(this, result, percentageResult)
         binding.viewpager.adapter = sectionsPagerAdapter

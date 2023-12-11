@@ -6,12 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".ui.diagnose.DetectionActivity">
 
-    <Button
+    <ImageButton
         android:id="@+id/btn_back"
-        style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:icon="@drawable/ic_back"
+        android:src="@drawable/ic_back"
+        android:backgroundTint="@color/white"
         android:layout_marginTop="16dp"
         android:layout_marginStart="26dp"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,8 +25,8 @@
         android:layout_marginTop="16dp"
         android:fontFamily="@font/poppins_medium"
         android:text="upload image"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:textColor="@color/tuna"
+        android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_back" />
 
@@ -46,6 +46,9 @@
             android:scaleType="centerCrop"
             android:src="@drawable/image_placeholder"
             app:layout_constraintTop_toBottomOf="@+id/textView"
+            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Small"
+            app:strokeColor="@color/periwinkle_blue"
+            app:strokeWidth="2dp"
             tools:layout_editor_absoluteX="26dp" />
         <Button
             android:id="@+id/btn_image_gallery"
@@ -53,7 +56,10 @@
             android:layout_gravity="center"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="select file"/>
+            android:textColor="@color/tuna"
+            android:text="select file"
+            android:backgroundTint="#A3FFFFFF"
+            />
     </FrameLayout>
 
     <TextView
@@ -65,8 +71,8 @@
         android:layout_marginStart="26dp"
         android:layout_marginEnd="26dp"
         android:layout_marginTop="32dp"
-        android:textColor="@color/black"
-        android:textSize="16sp"
+        android:textColor="@color/tuna"
+        android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/image_content" />
@@ -76,31 +82,34 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:minWidth="280dp"
+        android:minWidth="300dp"
+        android:minHeight="54dp"
         android:layout_marginStart="26dp"
         android:layout_marginEnd="26dp"
         android:layout_marginTop="32dp"
         android:text="open camera &amp; take foto"
-        android:textSize="16sp"
+        android:textSize="18sp"
         app:icon="@drawable/ic_camera"
+        android:backgroundTint="@color/pastel_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tv_or"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium" />
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small" />
 
     <Button
         android:id="@+id/btn_detection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:minWidth="280dp"
+        android:minWidth="300dp"
         android:layout_marginStart="26dp"
         android:layout_marginEnd="26dp"
         android:text="detection"
-        android:textSize="16sp"
+        android:textSize="18sp"
+        android:backgroundTint="@color/periwinkle_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/btn_take_camera"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium" />
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small" />
 </androidx.constraintlayout.widget.ConstraintLayout>

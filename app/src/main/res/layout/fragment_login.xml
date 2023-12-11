@@ -27,7 +27,7 @@
         android:layout_marginTop="26dp"
         android:fontFamily="@font/fugazone_regular"
         android:text="Let’s sign in"
-        android:textColor="@color/black"
+        android:textColor="@color/tuna"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/btn_back" />
@@ -40,7 +40,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Welcome,"
-        android:textColor="#252525"
+        android:textColor="@color/tuna"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/header_one" />
@@ -53,7 +53,7 @@
         android:layout_marginTop="8dp"
         android:fontFamily="@font/poppins_medium"
         android:text="Please login to entire application"
-        android:textColor="#252525"
+        android:textColor="@color/tuna"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_greeting" />
@@ -92,30 +92,21 @@
             android:inputType="textWebPassword" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!--    <EditText-->
-    <!--        android:id="@+id/ed_input_password"-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:hint="nama"-->
-    <!--        android:layout_marginStart="26dp"-->
-    <!--        android:layout_marginTop="24dp"-->
-    <!--        android:layout_marginEnd="26dp"-->
-    <!--        android:background="@drawable/edit_text_rounded"-->
-    <!--        app:layout_constraintTop_toBottomOf="@id/outline_password"-->
-    <!--        />-->
     <Button
         android:id="@+id/btn_login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
         android:minWidth="200dp"
+        android:minHeight="54dp"
         android:text="login"
-        android:textSize="16sp"
+        android:textSize="20sp"
+        android:backgroundTint="@color/periwinkle_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/outline_password"
-        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Medium" />
+        app:shapeAppearance="@style/ShapeAppearance.Material3.Corner.Small" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -144,7 +135,7 @@
             android:layout_marginStart="4dp"
             android:fontFamily="@font/poppins_medium"
             android:text="sign up"
-            android:textColor="#252525"
+            android:textColor="@color/tuna"
             android:textSize="14sp"
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>

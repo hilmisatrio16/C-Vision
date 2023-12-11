@@ -2,8 +2,8 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/menu1"
-        android:icon="@drawable/ic_home"
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/home_item_selector"
         android:title="home"
         />
     <item
@@ -11,8 +11,8 @@
         android:title=""
         />
     <item
-        android:id="@+id/menu3"
-        android:icon="@drawable/ic_profile"
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile_item_selected"
         android:title="profile"
         />
 
