@@ -21,7 +21,7 @@
         android:theme="@style/Theme.CVision"
         tools:targetApi="31" >
         <activity
-            android:name=".ui.article.DetailActivity"
+            android:name=".ui.article.DetailArticleActivity"
             android:exported="false" />
         <activity
             android:name=".ui.article.ArticleActivity"
