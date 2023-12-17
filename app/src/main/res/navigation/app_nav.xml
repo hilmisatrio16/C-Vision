@@ -14,5 +14,14 @@
         android:id="@+id/homeFragment"
         android:name="com.capstoneproject.cvision.ui.home.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_articleActivity"
+            app:destination="@id/articleActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/articleActivity"
+        android:name="com.capstoneproject.cvision.ui.article.ArticleActivity"
+        android:label="activity_article"
+        tools:layout="@layout/activity_article" />
 </navigation>

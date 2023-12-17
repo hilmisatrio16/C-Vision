@@ -8,11 +8,12 @@
 
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
+        android:id="@+id/img_banner"
         android:layout_width="match_parent"
-        android:layout_height="540dp"
-        android:layout_margin="24dp"
+        android:layout_height="460dp"
         android:scaleType="centerCrop"
+        android:elevation="2dp"
+        android:alpha="0"
         android:src="@drawable/image_onboarding_one"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -20,33 +21,35 @@
         app:shapeAppearanceOverlay="@style/ShapeImageAppearanceOverlay" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView"
+        android:id="@+id/tv_greeting"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="28dp"
+        android:alpha="0"
         android:fontFamily="@font/fugazone_regular"
-        android:text="Welcome to C-Vision"
+        android:text="@string/onboarding_greeting"
         android:textColor="#31304D"
         android:textSize="26sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+        app:layout_constraintTop_toBottomOf="@+id/img_banner" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView2"
+        android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="20dp"
         android:layout_marginTop="28dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_light"
         android:maxWidth="300dp"
-        android:text="prevent catarct for clearer vision and a brighter tomorrow"
+        android:text="@string/tagline_onboarding"
         android:textAlignment="center"
         android:textColor="#31304D"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/materialTextView"
-        app:layout_constraintStart_toStartOf="@+id/materialTextView"
-        app:layout_constraintTop_toBottomOf="@+id/materialTextView" />
+        app:layout_constraintEnd_toEndOf="@+id/tv_greeting"
+        app:layout_constraintStart_toStartOf="@+id/tv_greeting"
+        app:layout_constraintTop_toBottomOf="@+id/tv_greeting" />
 
     <Button
         android:id="@+id/btn_next"
@@ -54,10 +57,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="28dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_medium"
         android:minWidth="160dp"
         android:minHeight="54dp"
-        android:text="next"
+        android:text="@string/next"
         android:textColor="@color/white"
         android:textSize="20sp"
         app:backgroundTint="#83A2FF"

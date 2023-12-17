@@ -8,30 +8,33 @@
     tools:context=".ui.onboarding.OnboardingSecondActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:id="@+id/shapeableImageView"
+        android:id="@+id/image_banner"
         android:layout_width="match_parent"
-        android:layout_height="540dp"
-        android:layout_margin="24dp"
+        android:layout_height="460dp"
+        android:alpha="0"
+        android:elevation="2dp"
         android:scaleType="centerCrop"
         android:src="@drawable/image_eye_onboarding"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:shapeAppearanceOverlay="@style/ShapeImageAppearanceOverlay" />
 
     <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/materialTextView1"
+        android:id="@+id/tv_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="28dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_light"
         android:maxWidth="320dp"
-        android:text="Stay ahead in eye health by understanding your ocular well-being and proactively safeguarding against cataracts"
+        android:text="@string/description_onboarding"
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintEnd_toEndOf="@+id/shapeableImageView"
-        app:layout_constraintStart_toStartOf="@+id/shapeableImageView"
-        app:layout_constraintTop_toBottomOf="@+id/shapeableImageView" />
+        app:layout_constraintEnd_toEndOf="@+id/image_banner"
+        app:layout_constraintStart_toStartOf="@+id/image_banner"
+        app:layout_constraintTop_toBottomOf="@+id/image_banner" />
 
     <Button
         android:id="@+id/btn_started"
@@ -39,10 +42,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="28dp"
+        android:alpha="0"
         android:fontFamily="@font/poppins_medium"
         android:minWidth="160dp"
         android:minHeight="54dp"
-        android:text="get started"
+        android:text="@string/get_started"
+        android:textAlignment="center"
         android:textColor="#83A2FF"
         android:textSize="20sp"
         app:backgroundTint="@color/white"

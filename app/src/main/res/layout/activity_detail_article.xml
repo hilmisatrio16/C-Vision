@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.article.DetailArticleActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <FrameLayout
+            android:id="@+id/header_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/image_article"
+                android:layout_width="match_parent"
+                android:layout_height="260dp"
+                android:maxHeight="300dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/image_info_temporary" />
+
+            <ImageButton
+                style="@style/Widget.Material3.Button.IconButton.Filled.Tonal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:gravity="start"
+                android:src="@drawable/ic_back"
+                app:tint="@color/tuna" />
+        </FrameLayout>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="Characteristics of cataracts"
+            android:textColor="@color/tuna"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/header_layout" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="26dp"
+            android:layout_marginTop="26dp"
+            android:layout_marginEnd="26dp"
+            android:fontFamily="@font/poppins_regular"
+            android:text="Lorem ipsum dolor sit amet consectetur. Sit arcu laoreet hendrerit accumsan molestie faucibus. Sit urna duis risus sed leo amet egestas pulvinar. Posuere at nulla rhoncus tellus pulvinar. Suspendisse vel pulvinar dui urna a nunc facilisis sit. Vitae nulla ipsum volutpat purus vitae mi sem molestie ante. Non sit arcu tempor est. Diam iaculis hac massa tellus euismod feugiat vitae. Fames est dignissim tellus cursus interdum tortor. Risus mollis aenean et tincidunt."
+            android:textAlignment="textStart"
+            android:textColor="@color/tuna"
+            android:textSize="16sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>

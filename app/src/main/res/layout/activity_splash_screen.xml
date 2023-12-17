@@ -7,24 +7,28 @@
     tools:context=".ui.splashscreen.SplashScreenActivity">
 
     <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/icon_app"
         android:layout_width="108dp"
         android:layout_height="108dp"
         android:src="@drawable/icon_apk"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:alpha="0"/>
 
     <TextView
+        android:id="@+id/tv_name_apk"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/fugazone_regular"
-        android:text="C-Vision"
+        android:text="@string/name_application"
         android:textSize="24sp"
         android:layout_marginBottom="30dp"
         android:textColor="#31304D"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        android:alpha="0"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

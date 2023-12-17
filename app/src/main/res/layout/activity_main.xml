@@ -24,14 +24,14 @@
         app:contentInsetStart="0dp">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
-            style="@style/Widget.App.BottomNavigationView"
             android:id="@+id/bottom_nav"
+            style="@style/Widget.App.BottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            app:itemIconSize="28dp"
             android:background="#F3F8FF"
             android:padding="4dp"
+            app:itemIconSize="24dp"
             app:menu="@menu/app_menu" />
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -39,8 +39,8 @@
         android:id="@+id/scan"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:tint="@color/white"
         app:backgroundTint="@color/pastel_blue"
         app:layout_anchor="@id/bottomAppBar"
-        app:srcCompat="@drawable/ic_scan" />
+        app:srcCompat="@drawable/ic_eye_detection"
+        app:tint="@color/white" />
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

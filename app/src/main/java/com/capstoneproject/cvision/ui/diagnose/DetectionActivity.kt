@@ -54,6 +54,10 @@ class DetectionActivity : AppCompatActivity() {
 
 
         }
+
+        binding.btnBack.setOnClickListener {
+            onBackPressed()
+        }
     }
 
     private fun classifyImage() {
