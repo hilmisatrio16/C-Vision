@@ -6,7 +6,13 @@
         <item name="bottomNavigationStyle">@style/Widget.App.BottomNavigationView</item>
         <item name="bottomSheetDialogTheme">@style/ThemeOverlay.App.BottomSheetDialog</item>
         <item name="android:statusBarColor">@color/pastel_blue</item>
+        <item name="materialAlertDialogTheme">@style/ThemeOverlay.App.MaterialAlertDialog</item>
     </style>
 
     <style name="Theme.CVision" parent="Base.Theme.CVision" />
+
+    <style name="ThemeOverlay.App.MaterialAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
+        <item name="buttonBarPositiveButtonStyle">@style/Widget.App.Button.Positive</item>
+        <item name="buttonBarNegativeButtonStyle">@style/Widget.App.Button.Negative</item>
+    </style>
 </resources>

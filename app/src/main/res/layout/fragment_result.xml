@@ -1,72 +1,93 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     android:orientation="vertical"
     tools:context=".ui.diagnose.ResultFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="38dp"
-            app:cardBackgroundColor="@color/white"
-            app:cardElevation="2dp"
-            app:contentPadding="8dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <TextView
-                android:id="@+id/tv_percentage"
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="38dp"
+                app:cardBackgroundColor="@color/white"
+                app:cardElevation="2dp"
+                app:contentPadding="8dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:strokeColor="@android:color/transparent">
+
+                <TextView
+                    android:id="@+id/tv_percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="90%"
+                    android:textAlignment="center"
+                    android:textColor="@color/tuna"
+                    android:textSize="28sp" />
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:id="@+id/tv_diagnose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:fontFamily="@font/poppins_medium"
-                android:text="90%"
-                android:textAlignment="center"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Katarak Nukleus"
                 android:textColor="@color/tuna"
-                android:textSize="28sp" />
-        </com.google.android.material.card.MaterialCardView>
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView" />
 
+            <TextView
+                android:id="@+id/tv_disclaimer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/poppins_light"
+                android:text="@string/disclaimer"
+                android:textColor="@color/red"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
 
-        <TextView
-            android:id="@+id/tv_diagnose"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="16dp"
-            android:layout_marginEnd="26dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Katarak Nukleus"
-            android:textColor="@color/tuna"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/materialCardView"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/materialCardView"
-            app:layout_constraintTop_toTopOf="@+id/materialCardView" />
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Vitae nulla ipsum volutpat purus vitae mi sem molestie ante. Non sit arcu tempor est. Diam iaculis hac massa tellus euismod feugiat vitae. Fames est dignissim tellus cursus interdum tortor. Risus mollis aenean et tincidunt."
+                android:textColor="@color/tuna"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_disclaimer" />
 
-        <TextView
-            android:id="@+id/tv_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="26dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Vitae nulla ipsum volutpat purus vitae mi sem molestie ante. Non sit arcu tempor est. Diam iaculis hac massa tellus euismod feugiat vitae. Fames est dignissim tellus cursus interdum tortor. Risus mollis aenean et tincidunt."
-            android:textColor="@color/tuna"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/materialCardView" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</ScrollView>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

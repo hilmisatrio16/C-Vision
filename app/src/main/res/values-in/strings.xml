@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">C-Vision</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="tab_text_1">Hasil</string>
+    <string name="tab_text_2">Detail</string>
+    <string name="name_application">C-Vision</string>
+    <string name="onboarding_greeting">Selamat datang di C-Vision</string>
+    <string name="tagline_onboarding">prevent catarct for clearer vision and a brighter tomorrow</string>
+    <string name="description_onboarding">Stay ahead in eye health by understanding your ocular well-being and proactively safeguarding against cataracts</string>
+    <string name="text_banner">Look for information about eye conditions as a first step in preventing cataracts</string>
+    <string name="learn_more">learn more</string>
+    <string name="detection">deteksi</string>
+    <string name="article">artikel</string>
+    <string name="history">riwayat</string>
+    <string name="feature">Fitur</string>
+    <string name="articles">artikel</string>
+    <string name="upload_image">unggah gambar</string>
+    <string name="or">atau</string>
+    <string name="text_btn_take_foto"><![CDATA[buka kamera & ambil foto]]></string>
+    <string name="profile">profil</string>
+    <string name="information_amp_preference"><![CDATA[Informasi & preferensi]]></string>
+    <string name="about">tentang</string>
+    <string name="credits">kredit</string>
+    <string name="mode_display">mode tampilan</string>
+    <string name="logout">keluar</string>
+    <string name="next">selanjutnya</string>
+    <string name="get_started">mulai</string>
+    <string name="title_dialog_logout">keluar</string>
+    <string name="message_dialog_logout">apakah anda yakin ingin keluar?</string>
+    <string name="cancel">batal</string>
+    <string name="disclaimer">The diagnostic results provided by this app are solely predictive in nature and should not be considered as absolute reference.</string>
+    <string name="select_file">pilih file</string>
+</resources>

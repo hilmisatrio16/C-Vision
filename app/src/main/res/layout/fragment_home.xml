@@ -1,410 +1,289 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
-    android:orientation="vertical"
     tools:context=".ui.home.HomeFragment">
 
-<!--    constraint diganti dengan linier-->
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#9DB0FF">
+        app:layout_constraintTop_toTopOf="parent">
 
-        <LinearLayout
-            android:id="@+id/header"
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/background_wave_three"
-            android:orientation="vertical"
-            app:layout_constraintTop_toTopOf="parent">
+            android:minHeight="?attr/actionBarSize"
+            android:background="@color/periwinkle_blue"
+            app:title="Halo, User"
+            app:titleTextColor="@color/white"
+            app:titleTextAppearance="@style/TextAppearance.AppCompat.Title"
+            app:titleMarginStart="26dp"
+            />
+    </com.google.android.material.appbar.AppBarLayout>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="Halo, User"
-                android:textColor="@color/white"
-                android:textSize="20sp" />
+    <!--    constraint diganti dengan linier-->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9DB0FF"
+            android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/header"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:gravity="center"
-                android:orientation="horizontal">
+                android:background="@drawable/background_wave_three"
+                android:gravity="center_vertical"
+                android:orientation="vertical">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="26dp"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_info"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/text_banner"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+
+                        <TextView
+                            android:id="@+id/tv_more"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0"
+                            android:fontFamily="@font/poppins_light"
+                            android:text="@string/learn_more"
+                            android:textColor="#0082FF"
+                            android:textSize="16sp" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/image_banner"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="26dp"
+                        android:layout_weight="2"
+                        android:alpha="0"
+                        android:src="@drawable/image_banner"
+                        android:textColor="@color/white" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/rounded_top"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="32dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/feature"
+                    android:textColor="@color/tuna"
+                    android:textSize="18sp" />
+
+                <!--            masih pertimbangan-->
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="26dp"
-                    android:layout_weight="1"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:id="@+id/tv_info"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/text_banner"
-                        android:textColor="@color/white"
-                        android:textSize="16sp" />
-
-                    <TextView
-                        android:id="@+id/tv_more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:alpha="0"
-                        android:fontFamily="@font/poppins_light"
-                        android:text="@string/learn_more"
-                        android:textColor="#0082FF"
-                        android:textSize="16sp" />
-
-                </LinearLayout>
-
-                <ImageView
-                    android:id="@+id/image_banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
                     android:layout_marginEnd="26dp"
-                    android:layout_weight="2"
-                    android:alpha="0"
-                    android:src="@drawable/image_banner"
-                    android:textColor="@color/white" />
-            </LinearLayout>
-        </LinearLayout>
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/content_layout"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:background="@drawable/rounded_top"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/header">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center"
+                        android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="32dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/feature"
-                android:textColor="#31304D"
-                android:textSize="18sp" />
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/detection_menu"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="6dp"
+                            app:cardBackgroundColor="@color/pastel_blue"
+                            app:cardElevation="2dp"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                            app:strokeColor="@android:color/transparent">
 
-            <!--            <LinearLayout-->
-            <!--                android:layout_width="match_parent"-->
-            <!--                android:layout_height="wrap_content"-->
-            <!--                android:layout_marginStart="26dp"-->
-            <!--                android:layout_marginTop="16dp"-->
-            <!--                android:layout_marginEnd="26dp"-->
-            <!--                android:gravity="center"-->
-            <!--                android:orientation="horizontal">-->
-
-            <!--                <LinearLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_weight="1"-->
-            <!--                    android:gravity="center_vertical|center"-->
-            <!--                    android:orientation="vertical">-->
-
-            <!--                    <com.google.android.material.card.MaterialCardView-->
-            <!--                        android:id="@+id/detection_menu"-->
-            <!--                        android:layout_width="74dp"-->
-            <!--                        android:layout_height="74dp"-->
-            <!--                        android:layout_margin="6dp"-->
-            <!--                        app:cardBackgroundColor="@color/pastel_blue"-->
-            <!--                        app:cardElevation="2dp"-->
-            <!--                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">-->
-
-            <!--                        <LinearLayout-->
-            <!--                            android:layout_width="wrap_content"-->
-            <!--                            android:layout_height="wrap_content"-->
-            <!--                            android:layout_gravity="center"-->
-            <!--                            android:layout_margin="4dp"-->
-            <!--                            android:gravity="center"-->
-            <!--                            android:orientation="vertical">-->
-
-            <!--                            <ImageView-->
-            <!--                                android:layout_width="wrap_content"-->
-            <!--                                android:layout_height="wrap_content"-->
-            <!--                                android:src="@drawable/ic_eye_detection" />-->
-
-            <!--                            <TextView-->
-            <!--                                android:layout_width="wrap_content"-->
-            <!--                                android:layout_height="wrap_content"-->
-            <!--                                android:layout_marginTop="4dp"-->
-            <!--                                android:fontFamily="@font/poppins_regular"-->
-            <!--                                android:text="@string/detection"-->
-            <!--                                android:textAlignment="center"-->
-            <!--                                android:textColor="@color/white"-->
-            <!--                                android:textSize="10sp" />-->
-            <!--                        </LinearLayout>-->
-            <!--                    </com.google.android.material.card.MaterialCardView>-->
-            <!--                </LinearLayout>-->
-
-            <!--                <LinearLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_margin="8dp"-->
-            <!--                    android:layout_weight="1"-->
-            <!--                    android:gravity="center_vertical|center"-->
-            <!--                    android:orientation="vertical">-->
-
-            <!--                    <com.google.android.material.card.MaterialCardView-->
-            <!--                        android:id="@+id/article_menu"-->
-            <!--                        android:layout_width="74dp"-->
-            <!--                        android:layout_height="74dp"-->
-            <!--                        android:layout_margin="6dp"-->
-            <!--                        app:cardBackgroundColor="@color/pastel_blue"-->
-            <!--                        app:cardElevation="2dp"-->
-            <!--                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">-->
-
-            <!--                        <LinearLayout-->
-            <!--                            android:layout_width="wrap_content"-->
-            <!--                            android:layout_height="wrap_content"-->
-            <!--                            android:layout_gravity="center"-->
-            <!--                            android:layout_margin="4dp"-->
-            <!--                            android:gravity="center"-->
-            <!--                            android:orientation="vertical">-->
-
-            <!--                            <ImageView-->
-            <!--                                android:layout_width="wrap_content"-->
-            <!--                                android:layout_height="wrap_content"-->
-            <!--                                android:src="@drawable/ic_article_outline" />-->
-
-            <!--                            <TextView-->
-            <!--                                android:layout_width="wrap_content"-->
-            <!--                                android:layout_height="wrap_content"-->
-            <!--                                android:layout_marginTop="4dp"-->
-            <!--                                android:fontFamily="@font/poppins_regular"-->
-            <!--                                android:text="@string/article"-->
-            <!--                                android:textAlignment="center"-->
-            <!--                                android:textColor="@color/white"-->
-            <!--                                android:textSize="10sp" />-->
-            <!--                        </LinearLayout>-->
-            <!--                    </com.google.android.material.card.MaterialCardView>-->
-            <!--                </LinearLayout>-->
-
-            <!--                <LinearLayout-->
-            <!--                    android:layout_width="match_parent"-->
-            <!--                    android:layout_height="wrap_content"-->
-            <!--                    android:layout_margin="8dp"-->
-            <!--                    android:layout_weight="1"-->
-            <!--                    android:gravity="center_vertical|center"-->
-            <!--                    android:orientation="vertical">-->
-
-            <!--                    <com.google.android.material.card.MaterialCardView-->
-            <!--                        android:id="@+id/history_menu"-->
-            <!--                        android:layout_width="74dp"-->
-            <!--                        android:layout_height="74dp"-->
-            <!--                        android:layout_margin="6dp"-->
-            <!--                        app:cardBackgroundColor="@color/pastel_blue"-->
-            <!--                        app:cardElevation="2dp"-->
-            <!--                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">-->
-
-            <!--                        <LinearLayout-->
-            <!--                            android:layout_width="wrap_content"-->
-            <!--                            android:layout_height="wrap_content"-->
-            <!--                            android:layout_gravity="center"-->
-            <!--                            android:layout_margin="4dp"-->
-            <!--                            android:gravity="center"-->
-            <!--                            android:orientation="vertical">-->
-
-            <!--                            <ImageView-->
-            <!--                                android:layout_width="wrap_content"-->
-            <!--                                android:layout_height="wrap_content"-->
-            <!--                                android:src="@drawable/ic_history" />-->
-
-            <!--                            <TextView-->
-            <!--                                android:layout_width="wrap_content"-->
-            <!--                                android:layout_height="wrap_content"-->
-            <!--                                android:layout_marginTop="4dp"-->
-            <!--                                android:fontFamily="@font/poppins_regular"-->
-            <!--                                android:text="@string/history"-->
-            <!--                                android:textAlignment="center"-->
-            <!--                                android:textColor="@color/white"-->
-            <!--                                android:textSize="10sp" />-->
-            <!--                        </LinearLayout>-->
-            <!--                    </com.google.android.material.card.MaterialCardView>-->
-            <!--                </LinearLayout>-->
-            <!--            </LinearLayout>-->
-
-            <!--            masih pertimbangan-->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="26dp"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_margin="8dp"
-                    android:gravity="center_vertical|center"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/detection_menu"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:layout_margin="6dp"
-                        app:cardBackgroundColor="@color/pastel_blue"
-                        app:cardElevation="2dp"
-                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-                        app:strokeColor="@android:color/transparent">
-
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="4dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
-
-                            <ImageView
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_eye_detection" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
+                                android:layout_gravity="center"
+                                android:layout_margin="4dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:elevation="2dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/detection"
-                        android:textAlignment="center"
-                        android:textColor="@color/tuna"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_eye_detection" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|center"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/article_menu"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:layout_margin="6dp"
-                        app:cardBackgroundColor="@color/pastel_blue"
-                        app:cardElevation="2dp"
-                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-                        app:strokeColor="@android:color/transparent">
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="4dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_marginTop="4dp"
+                            android:elevation="2dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/detection"
+                            android:textAlignment="center"
+                            android:textColor="@color/tuna"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
-                            <ImageView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/article_menu"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="6dp"
+                            app:cardBackgroundColor="@color/pastel_blue"
+                            app:cardElevation="2dp"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                            app:strokeColor="@android:color/transparent">
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_article_outline" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
+                                android:layout_gravity="center"
+                                android:layout_margin="4dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:elevation="2dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/article"
-                        android:textAlignment="center"
-                        android:textColor="@color/tuna"
-                        android:textSize="12sp" />
-                </LinearLayout>
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_article_outline" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="8dp"
-                    android:layout_weight="1"
-                    android:gravity="center_vertical|center"
-                    android:orientation="vertical">
-
-                    <com.google.android.material.card.MaterialCardView
-                        android:id="@+id/history_menu"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
-                        android:layout_margin="6dp"
-                        app:cardBackgroundColor="@color/pastel_blue"
-                        app:cardElevation="2dp"
-                        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-                        app:strokeColor="@android:color/transparent">
-
-                        <LinearLayout
+                        <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="4dp"
-                            android:gravity="center"
-                            android:orientation="vertical">
+                            android:layout_marginTop="4dp"
+                            android:elevation="2dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/article"
+                            android:textAlignment="center"
+                            android:textColor="@color/tuna"
+                            android:textSize="12sp" />
+                    </LinearLayout>
 
-                            <ImageView
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="8dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical|center"
+                        android:orientation="vertical">
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/history_menu"
+                            android:layout_width="64dp"
+                            android:layout_height="64dp"
+                            android:layout_margin="6dp"
+                            app:cardBackgroundColor="@color/pastel_blue"
+                            app:cardElevation="2dp"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+                            app:strokeColor="@android:color/transparent">
+
+                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:src="@drawable/ic_history" />
-                        </LinearLayout>
-                    </com.google.android.material.card.MaterialCardView>
+                                android:layout_gravity="center"
+                                android:layout_margin="4dp"
+                                android:gravity="center"
+                                android:orientation="vertical">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
-                        android:elevation="2dp"
-                        android:fontFamily="@font/poppins_regular"
-                        android:text="@string/history"
-                        android:textAlignment="center"
-                        android:textColor="@color/tuna"
-                        android:textSize="12sp" />
+                                <ImageView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_history" />
+                            </LinearLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:elevation="2dp"
+                            android:fontFamily="@font/poppins_regular"
+                            android:text="@string/history"
+                            android:textAlignment="center"
+                            android:textColor="@color/tuna"
+                            android:textSize="12sp" />
+                    </LinearLayout>
                 </LinearLayout>
+
+                <!--            masih pertimbangan-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="16dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="@string/articles"
+                    android:textColor="@color/tuna"
+                    android:textSize="18sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_article_cataract"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="26dp"
+                    android:layout_marginBottom="16dp"
+                    android:nestedScrollingEnabled="false"
+                    tools:listitem="@layout/item_article_cataract" />
+
             </LinearLayout>
 
-            <!--            masih pertimbangan-->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="16dp"
-                android:fontFamily="@font/poppins_semibold"
-                android:text="@string/articles"
-                android:textColor="#31304D"
-                android:textSize="18sp" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rv_article_cataract"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="26dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="26dp"
-                tools:listitem="@layout/item_article_cataract" />
-
         </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

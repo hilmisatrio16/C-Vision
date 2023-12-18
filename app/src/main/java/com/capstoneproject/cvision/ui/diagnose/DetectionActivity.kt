@@ -50,8 +50,10 @@ class DetectionActivity : AppCompatActivity() {
         binding.btnTakeCamera.setOnClickListener { startCameraX() }
         binding.btnImageGallery.setOnClickListener { startGallery() }
         binding.btnDetection.setOnClickListener {
-            classifyImage()
 
+            if(currentImageUri != null){
+                classifyImage()
+            }
 
         }
 

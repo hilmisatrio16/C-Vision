@@ -38,7 +38,16 @@ class CameraActivity : AppCompatActivity() {
             startCamera()
         }
 
+        binding.flashCamera.setOnClickListener {
+            setFlashLightCamera()
+        }
+
         binding.captureImage.setOnClickListener { takePhoto() }
+
+    }
+
+    private fun setFlashLightCamera() {
+
 
     }
 
@@ -60,7 +69,8 @@ class CameraActivity : AppCompatActivity() {
                         it.setSurfaceProvider(binding.viewFinder.surfaceProvider)
                     }
 
-                imageCapture = ImageCapture.Builder().build()
+                imageCapture =
+                    ImageCapture.Builder().build()
 
                 try {
                     cameraProvider.unbindAll()
@@ -82,7 +92,7 @@ class CameraActivity : AppCompatActivity() {
         )
     }
 
-    private fun takePhoto(){
+    private fun takePhoto() {
         val imageCapture = imageCapture ?: return
         val photoFile = createCustomTempFile(application)
         val oututOptions = ImageCapture.OutputFileOptions.Builder(photoFile).build()
@@ -90,7 +100,7 @@ class CameraActivity : AppCompatActivity() {
         imageCapture.takePicture(
             oututOptions,
             ContextCompat.getMainExecutor(this),
-            object : ImageCapture.OnImageSavedCallback{
+            object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
                     val intent = Intent()
                     intent.putExtra(EXTRA_CAMERAX_IMAGE, outputFileResults.savedUri.toString())

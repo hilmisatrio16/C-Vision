@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,56 +7,62 @@
     android:orientation="vertical"
     tools:context=".ui.diagnose.DetailResultFragment">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/tv_diagnose"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="38dp"
-            android:layout_marginEnd="26dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Katarak Nukleus"
-            android:textColor="@color/tuna"
-            android:textSize="20sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_description"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginEnd="26dp"
-            android:fontFamily="@font/poppins_regular"
-            android:text="Vitae nulla ipsum volutpat purus vitae mi sem molestie ante. Non sit arcu tempor est. Diam iaculis hac massa tellus euismod feugiat vitae. Fames est dignissim tellus cursus interdum tortor. Risus mollis aenean et tincidunt."
-            android:textColor="@color/tuna"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_diagnose" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/tv_tag"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginStart="26dp"
-            android:layout_marginTop="16dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="tag"
-            android:textColor="@color/tuna"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+            <TextView
+                android:id="@+id/tv_diagnose"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="38dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/poppins_semibold"
+                android:text="Katarak Nukleus"
+                android:textColor="@color/tuna"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tv_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="26dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="Vitae nulla ipsum volutpat purus vitae mi sem molestie ante. Non sit arcu tempor est. Diam iaculis hac massa tellus euismod feugiat vitae. Fames est dignissim tellus cursus interdum tortor. Risus mollis aenean et tincidunt."
+                android:textColor="@color/tuna"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_diagnose" />
+
+            <TextView
+                android:id="@+id/tv_tag"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="26dp"
+                android:layout_marginTop="16dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="tag"
+                android:textColor="@color/tuna"
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_description" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
 
 
-</ScrollView>
+</androidx.core.widget.NestedScrollView>

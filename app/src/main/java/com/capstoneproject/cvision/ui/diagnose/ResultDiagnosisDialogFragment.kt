@@ -40,6 +40,10 @@ class ResultDiagnosisDialogFragment(uri: Uri, percentage: String, classResult: S
 
         binding.imageResult.setImageURI(imageUri)
 
+        binding.btnClose.setOnClickListener {
+            dismiss()
+        }
+
         val sectionsPagerAdapter = SectionPageDiagnosisAdapter(this, result, percentageResult)
         binding.viewpager.adapter = sectionsPagerAdapter
         TabLayoutMediator(binding.tabLayout, binding.viewpager) { tab, position ->

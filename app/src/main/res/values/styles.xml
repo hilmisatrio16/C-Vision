@@ -26,4 +26,15 @@
     <style name="ThemeOverlay.App.BottomSheetDialog" parent="ThemeOverlay.Material3.BottomSheetDialog">
         <item name="android:navigationBarColor" tools:ignore="NewApi">@android:color/transparent</item>
     </style>
+
+    <style name="Widget.App.Button.Positive" parent="@style/Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/tuna</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
+    <style name="Widget.App.Button.Negative" parent="@style/Widget.Material3.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/red</item>
+        <item name="android:fontFamily">@font/poppins_medium</item>
+    </style>
+
 </resources>
