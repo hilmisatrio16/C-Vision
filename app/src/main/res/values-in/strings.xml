@@ -44,4 +44,10 @@
     <string name="already_have_an_account">Apakah anda sudah memiliki akun?</string>
     <string name="sign_in">masuk</string>
     <string name="username">username</string>
+    <string name="request_granted">Permintaan izin dikabulkan</string>
+    <string name="request_denied">Permintaan izin ditolak</string>
+    <string name="cataract_description">Berdasarkan gambar yang diunggah, diprediksi bahwa kondisi mata Anda dalam gambar tersebut menunjukkan adanya katarak.</string>
+    <string name="normal_description">Berdasarkan gambar yang telah dikirim, diperkirakan bahwa kondisi mata Anda dalam gambar tidak menunjukkan katarak. Namun, tetaplah menjaga kesehatan mata Anda.</string>
+    <string name="return_to_previous_page">return to previous page</string>
+    <string name="back_to_previous_page">back to previous page</string>
 </resources>
