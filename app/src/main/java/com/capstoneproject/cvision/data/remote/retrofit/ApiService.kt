@@ -1,9 +1,13 @@
 package com.capstoneproject.cvision.data.remote.retrofit
 
+import com.capstoneproject.cvision.data.model.auth.RequestLogout
 import com.capstoneproject.cvision.data.model.auth.ResponseLogin
+import com.capstoneproject.cvision.data.model.auth.ResponseLogout
 import com.capstoneproject.cvision.data.model.auth.ResponseRegister
+import com.capstoneproject.cvision.data.model.predict.ResponsePrediction
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
+import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
@@ -29,20 +33,17 @@ interface ApiService {
         @Field("password") password: String
     ): ResponseRegister
 
-    @GET("users")
-    suspend fun getProfileUser(
-        @Header("Authorization") token: String
-    )
+    @FormUrlEncoded
+    @POST("logout")
+    suspend fun userLogout(
+        @Field("username") username: String
+    ): ResponseLogout
 
-    @GET("articles")
-    suspend fun getArticles(
-        @Header("Authorization") token: String,
-    )
 
     @Multipart
     @POST("predict")
     suspend fun predictCataract(
         @Part("token") token: RequestBody,
         @Part file: MultipartBody.Part
-    )
+    ): ResponsePrediction
 }
