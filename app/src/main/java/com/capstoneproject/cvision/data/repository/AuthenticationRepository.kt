@@ -3,7 +3,9 @@ package com.capstoneproject.cvision.data.repository
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstoneproject.cvision.data.dsprefs.AuthPreferences
+import com.capstoneproject.cvision.data.model.auth.RequestLogout
 import com.capstoneproject.cvision.data.model.auth.ResponseLogin
+import com.capstoneproject.cvision.data.model.auth.ResponseLogout
 import com.capstoneproject.cvision.data.model.auth.ResponseRegister
 import com.capstoneproject.cvision.data.remote.retrofit.ApiService
 import com.capstoneproject.cvision.utils.Result
@@ -24,7 +26,7 @@ class AuthenticationRepository(
             val response = apiService.userLogin(username, password)
             emit(Result.Success(response))
         }catch (e: HttpException){
-            emit(Result.Error(handleHttpExceptionMassage(e)))
+            emit(Result.Error(e.message.toString()))
         }catch (e: ConnectException) {
             emit(Result.Error("No internet connection, please connect to the internet"))
         } catch (e: Exception) {
@@ -38,7 +40,7 @@ class AuthenticationRepository(
             val response = apiService.userRegister(name, username, password)
             emit(Result.Success(response))
         }catch (e: HttpException){
-            emit(Result.Error(handleHttpExceptionMassage(e)))
+            emit(Result.Error(e.message.toString()))
         }catch (e: ConnectException) {
             emit(Result.Error("No internet connection, please connect to the internet"))
         } catch (e: Exception) {
@@ -46,22 +48,22 @@ class AuthenticationRepository(
         }
     }
 
-    fun getProfileUser(token: String): LiveData<Result<Unit>> = liveData {
+    fun logout(username: String): LiveData<Result<ResponseLogout>> = liveData {
         emit(Result.Loading)
         try {
-            val response = apiService.getProfileUser(token)
+            val response = apiService.userLogout(username)
             emit(Result.Success(response))
-        } catch (e: HttpException) {
-            emit(Result.Error(handleHttpExceptionMassage(e)))
-        } catch (e: ConnectException) {
+        }catch (e: HttpException){
+            emit(Result.Error(e.message.toString()))
+        }catch (e: ConnectException) {
             emit(Result.Error("No internet connection, please connect to the internet"))
         } catch (e: Exception) {
-            emit(Result.Error("An unexpected error occurred"))
+            emit(Result.Error("An unexpected error occurred" + e.message))
         }
     }
 
-    suspend fun saveSessionUser(token: String, name: String) {
-        authPrefs.saveDataPrefs(true, token, name)
+    suspend fun saveSessionUser(token: String, name: String, username: String) {
+        authPrefs.saveDataPrefs(true, token, name, username)
     }
 
     suspend fun clearSession() {
@@ -73,6 +75,8 @@ class AuthenticationRepository(
     val nameUser: Flow<String> = authPrefs.getNameUser()
 
     val token: Flow<String> = authPrefs.getToken()
+
+    val username: Flow<String> = authPrefs.getUsername()
 
     companion object {
         @Volatile
