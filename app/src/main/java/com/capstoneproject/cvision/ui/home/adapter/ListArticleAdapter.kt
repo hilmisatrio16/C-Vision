@@ -5,10 +5,12 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstoneproject.cvision.data.model.article.Article
 import com.capstoneproject.cvision.databinding.ItemArticleCataractBinding
 
-class ListArticleAdapter: RecyclerView.Adapter<ListArticleAdapter.ViewHolder>() {
+class ListArticleAdapter(var onClickItemArticle: ((Article) -> Unit)? = null) :
+    RecyclerView.Adapter<ListArticleAdapter.ViewHolder>() {
 
     private var diffCallbackUser = object : DiffUtil.ItemCallback<Article>() {
         override fun areItemsTheSame(
@@ -37,20 +39,29 @@ class ListArticleAdapter: RecyclerView.Adapter<ListArticleAdapter.ViewHolder>() 
         parent: ViewGroup,
         viewType: Int
     ): ListArticleAdapter.ViewHolder {
-        val view = ItemArticleCataractBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val view =
+            ItemArticleCataractBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ViewHolder(view)
     }
 
-    class ViewHolder(var binding: ItemArticleCataractBinding): RecyclerView.ViewHolder(binding.root)
+    class ViewHolder(var binding: ItemArticleCataractBinding) :
+        RecyclerView.ViewHolder(binding.root)
 
     override fun onBindViewHolder(holder: ListArticleAdapter.ViewHolder, position: Int) {
         val dataArticle = differ.currentList[position]
 
-        with(holder.binding){
-            imageArticle.setImageResource(dataArticle.image)
+        with(holder.binding) {
+            Glide.with(holder.itemView.context)
+                .load(dataArticle.imageUrl)
+                .into(imageArticle)
             tvTitle.text = dataArticle.title
-            tvShortDescription.text = dataArticle.content
+            tvShortDescription.text = dataArticle.urlArt
         }
+
+        holder.itemView.setOnClickListener {
+            onClickItemArticle?.invoke(dataArticle)
+        }
+
     }
 
     override fun getItemCount(): Int {

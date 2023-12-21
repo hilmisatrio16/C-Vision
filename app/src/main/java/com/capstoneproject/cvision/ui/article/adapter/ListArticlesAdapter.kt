@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.capstoneproject.cvision.data.model.article.Article
 import com.capstoneproject.cvision.databinding.ItemArticleCataractBinding
 import com.capstoneproject.cvision.ui.home.adapter.ListArticleAdapter
@@ -48,9 +49,11 @@ class ListArticlesAdapter(var onClickItemArticle: ((Article) -> Unit)? = null) :
         val dataArticle = differ.currentList[position]
 
         with(holder.binding){
-            imageArticle.setImageResource(dataArticle.image)
+            Glide.with(holder.itemView.context)
+                .load(dataArticle.imageUrl)
+                .into(imageArticle)
             tvTitle.text = dataArticle.title
-            tvShortDescription.text = dataArticle.content
+            tvShortDescription.text = dataArticle.urlArt
         }
         holder.itemView.setOnClickListener {
             onClickItemArticle?.invoke(dataArticle)
