@@ -9,6 +9,7 @@ import android.view.View
 import com.capstoneproject.cvision.MainActivity
 import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.databinding.ActivityOnboardingSecondBinding
+import com.capstoneproject.cvision.ui.login.LoginActivity
 
 class OnboardingSecondActivity : AppCompatActivity() {
 
@@ -21,7 +22,7 @@ class OnboardingSecondActivity : AppCompatActivity() {
 
         setAnimation()
         binding.btnStarted.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
+            val intent = Intent(this, LoginActivity::class.java)
             intent.flags =
                 Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
