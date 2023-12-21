@@ -17,12 +17,14 @@ class AuthPreferences private constructor(private val dataStore: DataStore<Prefe
     private val IS_LOGIN = booleanPreferencesKey("is_login")
     private val TOKEN = stringPreferencesKey("token")
     private val NAME_USER = stringPreferencesKey("name_user")
+    private val USERNAME = stringPreferencesKey("username")
 
-    suspend fun saveDataPrefs(userIsLogin: Boolean, token: String, nameUser: String){
+    suspend fun saveDataPrefs(userIsLogin: Boolean, token: String, nameUser: String, username: String){
         dataStore.edit {
             it[IS_LOGIN] = userIsLogin
             it[TOKEN] = token
             it[NAME_USER] =  nameUser
+            it[USERNAME] = username
         }
     }
 
@@ -47,6 +49,12 @@ class AuthPreferences private constructor(private val dataStore: DataStore<Prefe
     fun getNameUser(): Flow<String>{
         return dataStore.data.map {
             it[NAME_USER] ?: ""
+        }
+    }
+
+    fun getUsername(): Flow<String>{
+        return dataStore.data.map {
+            it[USERNAME] ?: ""
         }
     }
 
