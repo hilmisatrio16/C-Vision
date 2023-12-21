@@ -3,31 +3,53 @@ package com.capstoneproject.cvision.ui.diagnose
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.database.Cursor
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
+import androidx.lifecycle.Observer
+import com.capstoneproject.cvision.R
+import com.capstoneproject.cvision.data.model.predict.RequestPredict
+import com.capstoneproject.cvision.data.model.predict.ResponsePrediction
+import com.capstoneproject.cvision.data.remote.retrofit.ApiConfig
 import com.capstoneproject.cvision.databinding.ActivityDetectionBinding
 import com.capstoneproject.cvision.ui.diagnose.CameraActivity.Companion.CAMERAX_RESULT
+import com.capstoneproject.cvision.utils.Result
+import com.capstoneproject.cvision.utils.reduceFileImage
+import com.capstoneproject.cvision.utils.uriToFile
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.launch
+import java.io.File
 
 class DetectionActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityDetectionBinding
     private var currentImageUri: Uri? = null
+    private var token: String = ""
+
+    private val detectionVM by viewModels<DetectionViewModel> {
+        DetectionViewModelFactory.getInstance(this)
+    }
 
     private val requestPermissionLauncher =
         registerForActivityResult(
             ActivityResultContracts.RequestPermission()
         ) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(this, "Permission request granted", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, resources.getString(R.string.request_granted), Toast.LENGTH_LONG).show()
             } else {
-                Toast.makeText(this, "Permission request denied", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, resources.getString(R.string.request_denied), Toast.LENGTH_LONG).show()
             }
         }
 
@@ -38,6 +60,7 @@ class DetectionActivity : AppCompatActivity() {
         ) == PackageManager.PERMISSION_GRANTED
 
 
+    @RequiresApi(Build.VERSION_CODES.Q)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetectionBinding.inflate(layoutInflater)
@@ -47,12 +70,18 @@ class DetectionActivity : AppCompatActivity() {
             requestPermissionLauncher.launch(REQUIRED_PERMISSION)
         }
 
+        detectionVM.getTokenUser().observe(this, Observer {
+            if (it.isNotEmpty()) {
+                token = it
+            }
+        })
+
         binding.btnTakeCamera.setOnClickListener { startCameraX() }
         binding.btnImageGallery.setOnClickListener { startGallery() }
         binding.btnDetection.setOnClickListener {
 
-            if(currentImageUri != null){
-                classifyImage()
+            if (currentImageUri != null && token.isNotEmpty()) {
+                predictImageCataract()
             }
 
         }
@@ -62,14 +91,48 @@ class DetectionActivity : AppCompatActivity() {
         }
     }
 
-    private fun classifyImage() {
-            //show dialog
-            val resultDialog = ResultDiagnosisDialogFragment(
-                currentImageUri!!,
-                "0.90",
-                "Cataract"
-            )
-            resultDialog.show(supportFragmentManager, ResultDiagnosisDialogFragment.TAG)
+    @RequiresApi(Build.VERSION_CODES.Q)
+    private fun predictImageCataract() {
+        currentImageUri?.let { uriImage ->
+            val imageFile = uriToFile(uriImage, this).reduceFileImage()
+            val tokenUser = token
+            detectionVM.predictCataract(token, dataPredict = RequestPredict(tokenUser, imageFile))
+                .observe(this, Observer {
+                    if (it != null) {
+                        when (it) {
+                            is Result.Loading -> {
+                                Log.d("RESPONSE PREDICT", "load")
+                                binding.lottieLoading.visibility = View.VISIBLE
+                            }
+
+                            is Result.Success -> {
+                                binding.lottieLoading.visibility = View.GONE
+                                Log.d("RESPONSE PREDICT", it.data.toString())
+                                showResult(it.data)
+                                Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
+
+                            }
+
+                            is Result.Error -> {
+                                Log.d("RESPONSE PREDICT", it.error)
+                                binding.lottieLoading.visibility = View.GONE
+                                Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
+                            }
+                        }
+                    }
+                })
+
+        }
+
+    }
+
+    private fun showResult(dataRespon: ResponsePrediction) {
+        //show dialog
+        val resultDialog = ResultDiagnosisDialogFragment(
+            currentImageUri!!,
+            dataRespon
+        )
+        resultDialog.show(supportFragmentManager, ResultDiagnosisDialogFragment.TAG)
     }
 
     ///
@@ -85,12 +148,9 @@ class DetectionActivity : AppCompatActivity() {
         if (uri != null) {
             currentImageUri = uri
 
-            //
-
-
             showImage()
         } else {
-            Log.d("Photo Picker", "No media selected")
+            Log.d("Photo Picker", "No media or image selected")
         }
     }
 

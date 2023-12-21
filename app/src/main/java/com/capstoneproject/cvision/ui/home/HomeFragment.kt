@@ -2,21 +2,30 @@ package com.capstoneproject.cvision.ui.home
 
 import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.data.model.article.Article
 import com.capstoneproject.cvision.databinding.FragmentHomeBinding
+import com.capstoneproject.cvision.ui.article.DetailArticleActivity
 import com.capstoneproject.cvision.ui.home.adapter.ListArticleAdapter
+import com.capstoneproject.cvision.utils.ConstantValue.DATA_ARTICLE
 
 class HomeFragment : Fragment() {
 
     private lateinit var binding: FragmentHomeBinding
+
+    private val homeVM by viewModels<HomeViewModel> {
+        HomeViewModelFactory.getInstance(requireContext())
+    }
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -34,48 +43,24 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_homeFragment_to_articleActivity)
         }
 
-        //dummy
-        val dummyListArticle: ArrayList<Article> = ArrayList()
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 1",
-                "Description article cataract 1"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 2",
-                "Description article cataract 2"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 3",
-                "Description article cataract 3"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 4",
-                "Description article cataract 4"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 5",
-                "Description article cataract 5"
-            )
-        )
-        setRecycleViewArticle(dummyListArticle)
+        homeVM.getArticles().observe(viewLifecycleOwner) {
+            if (it.isNotEmpty()) {
+                setRecycleViewArticle(it.take(5) as ArrayList<Article>)
+            }
+        }
+
+        homeVM.getNameUser().observe(viewLifecycleOwner){
+            if(it.isNotEmpty()){
+                binding.topAppBar.title = "Halo, $it"
+            }
+        }
+
     }
 
     private fun setRecycleViewArticle(articles: ArrayList<Article>) {
-        val listArticleAdapter = ListArticleAdapter()
+        val listArticleAdapter = ListArticleAdapter {
+            moveToDetailArticle(it)
+        }
 
         binding.rvArticleCataract.apply {
             layoutManager = LinearLayoutManager(context)
@@ -83,6 +68,14 @@ class HomeFragment : Fragment() {
             adapter = listArticleAdapter
             setHasFixedSize(true)
         }
+    }
+
+    private fun moveToDetailArticle(itemArticle: Article) {
+        val intent = Intent(context, DetailArticleActivity::class.java).apply {
+            putExtra(DATA_ARTICLE, itemArticle)
+        }
+        startActivity(intent)
+
     }
 
 
