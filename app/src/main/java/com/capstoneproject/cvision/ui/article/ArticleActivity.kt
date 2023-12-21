@@ -4,15 +4,21 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.data.model.article.Article
 import com.capstoneproject.cvision.databinding.ActivityArticleBinding
 import com.capstoneproject.cvision.ui.article.adapter.ListArticlesAdapter
+import com.capstoneproject.cvision.utils.ConstantValue.DATA_ARTICLE
 
 class ArticleActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityArticleBinding
+
+    private val articleVM by viewModels<ArticleViewModel> {
+        ArticleViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,65 +29,28 @@ class ArticleActivity : AppCompatActivity() {
             onBackPressed()
         }
 
-        setRecycleviewArticle()
+        articleVM.getArticles().observe(this, Observer {
+            if (it != null) {
+                setRecycleviewArticle(it as ArrayList<Article>)
+            }
+        })
+
 
     }
 
-    private fun setRecycleviewArticle() {
-        val listArticlesAdapter = ListArticlesAdapter{
+    private fun setRecycleviewArticle(itemArticle: ArrayList<Article>) {
+        val listArticlesAdapter = ListArticlesAdapter {
             val intent = Intent(this, DetailArticleActivity::class.java)
-            intent.putExtra("DATA_ARTICLE", it)
+            intent.putExtra(DATA_ARTICLE, it)
             startActivity(intent)
-            Toast.makeText(this, it.title, Toast.LENGTH_LONG).show()
         }
 
         binding.rvArticles.apply {
             layoutManager = LinearLayoutManager(context)
-            listArticlesAdapter.submitData(dummyListArticle())
+            listArticlesAdapter.submitData(itemArticle)
             adapter = listArticlesAdapter
             setHasFixedSize(true)
         }
 
-    }
-
-    private fun dummyListArticle(): ArrayList<Article>{
-        val dummyListArticle: ArrayList<Article> = ArrayList()
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 1",
-                "Description article cataract 1"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 2",
-                "Description article cataract 2"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 3",
-                "Description article cataract 3"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 4",
-                "Description article cataract 4"
-            )
-        )
-        dummyListArticle.add(
-            Article(
-                R.drawable.image_info_temporary,
-                "Caract title 5",
-                "Description article cataract 5"
-            )
-        )
-
-        return dummyListArticle
     }
 }
