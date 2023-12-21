@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -50,18 +51,20 @@ class RegisterActivity : AppCompatActivity() {
                 if (it != null){
                     when(it){
                         is Result.Success ->{
+                            binding.lottieLoading.visibility = View.GONE
                             Log.d("RESPONSE AUTH", it.data.toString())
                             Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
                             clearField()
                             startActivity(Intent(this, LoginActivity::class.java))
 
                         }
-
                         is Result.Loading -> {
+                            binding.lottieLoading.visibility = View.VISIBLE
                             Log.d("RESPONSE AUTH", "load")
                         }
 
                         is  Result.Error -> {
+                            binding.lottieLoading.visibility = View.GONE
                             Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                             Log.d("RESPONSE AUTH", it.error)
                         }
@@ -69,7 +72,7 @@ class RegisterActivity : AppCompatActivity() {
                 }
             })
         }else{
-
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
         }
     }
 

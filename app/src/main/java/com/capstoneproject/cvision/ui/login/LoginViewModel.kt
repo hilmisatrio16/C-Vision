@@ -12,9 +12,9 @@ import kotlinx.coroutines.launch
 class LoginViewModel(private val authenticationRepository: AuthenticationRepository): ViewModel() {
     fun login(username: String, password: String): LiveData<Result<ResponseLogin>> = authenticationRepository.login(username, password)
 
-    fun sessionIsActive(token: String, name: String){
+    fun sessionIsActive(token: String, name: String, username: String){
         viewModelScope.launch {
-            authenticationRepository.saveSessionUser(token, name)
+            authenticationRepository.saveSessionUser(token, name, username)
         }
     }
 

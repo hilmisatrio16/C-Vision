@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -58,12 +59,14 @@ class LoginActivity : AppCompatActivity() {
                 if (it != null) {
                     when (it) {
                         is Result.Loading -> {
+                            binding.lottieLoading.visibility = View.VISIBLE
                             Log.d("RESPONSE AUTH", "load")
                         }
 
                         is Result.Success -> {
+                            binding.lottieLoading.visibility = View.GONE
                             if(!it.data.error){
-                                loginVM.sessionIsActive(it.data.token, it.data.yourName)
+                                loginVM.sessionIsActive(it.data.token, it.data.yourName, it.data.yourUsername)
                                 clearField()
                                 Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
                                 Log.d("RESPONSE AUTH", it.data.toString())
@@ -74,12 +77,15 @@ class LoginActivity : AppCompatActivity() {
                         }
 
                         is Result.Error -> {
+                            binding.lottieLoading.visibility = View.GONE
                             Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
                             Log.d("RESPONSE AUTH", it.error)
                         }
                     }
                 }
             })
+        }else{
+            Toast.makeText(this, "Please fill all fields", Toast.LENGTH_SHORT).show()
         }
     }
 

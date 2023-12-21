@@ -5,7 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstoneproject.cvision.data.repository.AuthenticationRepository
 import com.capstoneproject.cvision.di.Injection
-import com.capstoneproject.cvision.ui.register.RegisterViewModelFactory
 
 class LoginViewModelFactory private constructor(private val authenticationRepository: AuthenticationRepository) :
     ViewModelProvider.NewInstanceFactory() {
