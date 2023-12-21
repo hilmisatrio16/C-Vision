@@ -32,4 +32,16 @@
     <string name="cancel">batal</string>
     <string name="disclaimer">The diagnostic results provided by this app are solely predictive in nature and should not be considered as absolute reference.</string>
     <string name="select_file">pilih file</string>
+    <string name="about_content">C-Vision merupakan aplikasi berbasis mobile Android yang bertujuan untuk membantu detection mata katarak dengan memanfaatkan Artificial Intellegent. Semua fitur pada aplikasi ini masih dalam tahap pengembangan. Oleh karena itu hasil dari detection mata katarak tidak boleh menjadi diagnosis yang mutlak, karena diagnosis hanya dapat dilakukan oleh medis.</string>
+    <string name="title_sign_in">Let’s sign in</string>
+    <string name="welcome">Selamat Datang,</string>
+    <string name="please_login_to_entire_application">Silahkan login untuk masuk ke aplikasi</string>
+    <string name="login">masuk</string>
+    <string name="dont_have_account">Belum memiliki akun?</string>
+    <string name="sign_up">daftar</string>
+    <string name="title_sign_up">Ayo daftar</string>
+    <string name="please_regist_to_entire_application">Silahkan daftar untuk masuk ke aplikasi</string>
+    <string name="already_have_an_account">Apakah anda sudah memiliki akun?</string>
+    <string name="sign_in">masuk</string>
+    <string name="username">username</string>
 </resources>

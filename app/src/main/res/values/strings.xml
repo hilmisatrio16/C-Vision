@@ -31,4 +31,16 @@
     <string name="cancel">cancel</string>
     <string name="disclaimer">The diagnostic results provided by this app are solely predictive in nature and should not be considered as absolute reference.</string>
     <string name="select_file">select file</string>
+    <string name="about_content">C-Vision is an Android mobile-based application that aims to help cataract eye detection by utilizing artificial intelligence. All features in this application are still in the development stage. Therefore the results of cataract eye detection should not be an absolute diagnosis, because diagnosis can only be done by the medical field.</string>
+    <string name="title_sign_in">Let’s sign in</string>
+    <string name="welcome">Welcome,</string>
+    <string name="please_login_to_entire_application">Please login to entire application</string>
+    <string name="login">login</string>
+    <string name="dont_have_account">Don’t have an account?</string>
+    <string name="sign_up">sign up</string>
+    <string name="title_sign_up">Let’s sign up</string>
+    <string name="please_regist_to_entire_application">Please regist to entire application</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="sign_in">sign in</string>
+    <string name="username">username</string>
 </resources>
