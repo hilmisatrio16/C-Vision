@@ -6,16 +6,16 @@ import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.capstoneproject.cvision.ui.diagnose.DetailResultFragment
 import com.capstoneproject.cvision.ui.diagnose.ResultFragment
 
-class SectionPageDiagnosisAdapter (fragment: Fragment, resultClass: String, percentageClass: String) :
+class SectionPageDiagnosisAdapter (fragment: Fragment, resultClass: String, classPredict: String) :
     FragmentStateAdapter(fragment) {
 
     var result: String = ""
-    var percentage: String = ""
+    var classPrediction: String = ""
 
 
     init {
         result = resultClass
-        percentage = percentageClass
+        classPrediction = classPredict
     }
 
     override fun createFragment(position: Int): Fragment {
@@ -29,8 +29,8 @@ class SectionPageDiagnosisAdapter (fragment: Fragment, resultClass: String, perc
 
         //ADD CONSTANT
         fragment!!.arguments = Bundle().apply {
-            putString("RESULT CLASS", result)
-            putString("RESULT PERCENTAGE", percentage)
+            putString("RESULT JENIS", result)
+            putString("RESULT CLASS", classPrediction)
         }
         return fragment as Fragment
     }

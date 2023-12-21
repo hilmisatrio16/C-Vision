@@ -15,7 +15,7 @@ class ResultFragment : Fragment() {
     private lateinit var binding: FragmentResultBinding
 
     private var result = ""
-    private var percentage = ""
+    private var classPrediction = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -30,15 +30,13 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            result = it.getString("RESULT CLASS").toString()
-            percentage = it.getString("RESULT PERCENTAGE").toString()
+            result = it.getString("RESULT JENIS").toString()
+            classPrediction = it.getString("RESULT CLASS").toString()
         }
 
-        binding.tvPercentage.text = String.format("%.1f", percentage.toFloat() * 100)
         binding.tvDiagnose.text = result
 
         Log.d("HASIL", result)
-
 
     }
 
