@@ -1,9 +1,15 @@
 package com.capstoneproject.cvision.data.model.article
 
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import java.io.Serializable
 
+@Entity(tableName = "article")
 data class Article(
-    val image: Int,
-    val title: String,
-    val content: String
-): Serializable
+    @PrimaryKey(autoGenerate = true)
+    var image: Int = 0,
+    var title: String? = null,
+    var content: String? = null,
+    var imageUrl: String? = null,
+    var urlArt: String? = null
+) : Serializable
