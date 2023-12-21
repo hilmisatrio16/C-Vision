@@ -7,6 +7,17 @@
     android:background="@drawable/background_gradient_blue"
     tools:context=".ui.profile.ProfileFragment">
 
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/header_image"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        app:layout_constraintHeight_max="wrap"
+        android:scaleType="fitXY"
+        android:src="@drawable/img_close_up_old_man_with_brown_eyes"
+        app:layout_constraintTop_toTopOf="parent"
+        android:alpha="0.4"
+        app:shapeAppearanceOverlay="@style/ShapeImageAppearanceCornerBottomProfile"
+        app:layout_constraintBottom_toBottomOf="@id/card_profile_content"/>
 
     <ImageButton
         android:id="@+id/btn_back"
@@ -39,107 +50,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!--    ganti menjadi setting-->
-    <ImageButton
-        android:id="@+id/btn_setting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="26dp"
-        android:background="#00FFFFFF"
-        android:minWidth="48dp"
-        android:minHeight="48dp"
-        android:src="@drawable/ic_settings"
-        android:visibility="gone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/white" />
-
-
-    <!--    <androidx.constraintlayout.widget.ConstraintLayout-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_marginStart="16dp"-->
-    <!--        android:layout_marginTop="48dp"-->
-    <!--        android:layout_marginEnd="16dp"-->
-    <!--        android:background="@drawable/rounded_top"-->
-    <!--        android:backgroundTint="@color/pastel_blue"-->
-    <!--        app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--        app:layout_constraintTop_toBottomOf="@+id/btn_back">-->
-
-    <!--        <com.google.android.material.imageview.ShapeableImageView-->
-    <!--            android:id="@+id/image_user"-->
-    <!--            android:layout_width="64dp"-->
-    <!--            android:layout_height="64dp"-->
-    <!--            android:layout_marginTop="28dp"-->
-    <!--            android:scaleType="centerCrop"-->
-    <!--            android:src="@drawable/image_info_temporary"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent"-->
-    <!--            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />-->
-
-    <!--        <Button-->
-    <!--            android:id="@+id/btn_edit"-->
-    <!--            style="@style/Widget.Material3.Button.IconButton.Outlined"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="26dp"-->
-    <!--            android:layout_marginTop="24dp"-->
-    <!--            android:backgroundTint="@color/pastel_blue"-->
-    <!--            android:text="edit"-->
-    <!--            android:textColor="@color/white"-->
-    <!--            app:icon="@drawable/ic_edit"-->
-    <!--            app:iconTint="@color/white"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/image_user"-->
-    <!--            app:strokeColor="@color/white" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/tv_name"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="20dp"-->
-    <!--            android:fontFamily="@font/poppins_medium"-->
-    <!--            android:text="name"-->
-    <!--            android:textColor="@color/tuna"-->
-    <!--            android:textSize="16sp"-->
-    <!--            app:layout_constraintStart_toStartOf="@+id/ed_name"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/btn_edit" />-->
-
-    <!--        <EditText-->
-    <!--            android:id="@+id/ed_name"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="26dp"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_marginEnd="26dp"-->
-    <!--            android:background="@drawable/edit_text_rounded"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/tv_name" />-->
-
-    <!--        <TextView-->
-    <!--            android:id="@+id/tv_email"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginTop="10dp"-->
-    <!--            android:fontFamily="@font/poppins_medium"-->
-    <!--            android:text="email"-->
-    <!--            android:textColor="@color/tuna"-->
-    <!--            android:textSize="16sp"-->
-    <!--            app:layout_constraintStart_toStartOf="@+id/ed_email"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/ed_name" />-->
-
-    <!--        <EditText-->
-    <!--            android:id="@+id/ed_email"-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:layout_marginStart="26dp"-->
-    <!--            android:layout_marginTop="8dp"-->
-    <!--            android:layout_marginEnd="26dp"-->
-    <!--            android:background="@drawable/edit_text_rounded"-->
-    <!--            app:layout_constraintTop_toBottomOf="@+id/tv_email" />-->
-    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
-
     <androidx.cardview.widget.CardView
         android:id="@+id/card_profile_content"
         android:layout_width="match_parent"
@@ -147,9 +57,12 @@
         android:layout_marginStart="26dp"
         android:layout_marginTop="36dp"
         android:layout_marginEnd="26dp"
+        android:layout_marginBottom="20dp"
         app:cardBackgroundColor="#B7FFFFFF"
         app:cardCornerRadius="10dp"
         app:cardElevation="2dp"
+        android:alpha="0.8"
+        app:layout_constraintBottom_toBottomOf="@id/header_image"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         app:strokeColor="@android:color/transparent">
 
@@ -159,42 +72,21 @@
             android:background="#B7FFFFFF"
             android:orientation="vertical">
 
-            <ImageButton
-                android:id="@+id/btn_edit"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:layout_gravity="end"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="26dp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_edit"
-                app:tint="#0D1282" />
-
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="26dp"
+                android:layout_marginTop="26dp"
                 android:layout_marginBottom="26dp"
                 android:orientation="horizontal">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/image_user"
-                    android:layout_width="70dp"
-                    android:layout_height="70dp"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/image_info_temporary"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
-                    android:layout_toEndOf="@id/image_user"
                     android:orientation="vertical">
 
                     <TextView
@@ -202,50 +94,20 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="Robert Sanjaya"
+                        android:text="name"
                         android:textColor="@color/tuna"
                         android:textSize="18sp" />
 
                     <TextView
-                        android:id="@+id/tv_email_user"
+                        android:id="@+id/tv_username"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
                         android:fontFamily="@font/poppins_regular"
-                        android:text="robert@gmail.com"
+                        android:text="username"
                         android:textColor="@color/tuna"
                         android:textSize="14sp" />
                 </LinearLayout>
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="#8C83A2FF"
-                android:paddingStart="26dp"
-                android:paddingTop="6dp"
-                android:paddingEnd="26dp"
-                android:paddingBottom="6dp">
-
-                <TextView
-                    android:id="@+id/tv_history"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:fontFamily="@font/poppins_medium"
-                    android:text="History"
-                    android:textColor="#5781FF"
-                    android:textSize="16sp" />
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:src="@drawable/ic_arrow_back_two"
-                    app:tint="#5781FF" />
-
             </RelativeLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -263,7 +125,7 @@
         android:textColor="@color/white"
         android:textSize="18sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/card_profile_content" />
+        app:layout_constraintTop_toBottomOf="@id/header_image" />
 
 
     <LinearLayout
@@ -380,58 +242,6 @@
             app:dividerInsetStart="16dp" />
 
         <RelativeLayout
-            android:id="@+id/mode_display"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp">
-
-            <com.google.android.material.card.MaterialCardView
-                android:id="@+id/image_mode_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentStart="true"
-                android:layout_centerVertical="true"
-                app:cardBackgroundColor="@color/blue_haze"
-                app:cardCornerRadius="8dp"
-                app:contentPadding="8dp"
-                app:strokeColor="@android:color/transparent">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_outline_dark_mode"
-                    app:tint="#0D1282" />
-            </com.google.android.material.card.MaterialCardView>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_marginStart="16dp"
-                android:layout_toEndOf="@id/image_mode_display"
-                android:fontFamily="@font/poppins_regular"
-                android:text="@string/mode_display"
-                android:textColor="@color/tuna"
-                android:textSize="16sp" />
-
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/image_arrow_mode_display"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_centerVertical="true"
-                android:src="@drawable/ic_arrow_back_two"
-                app:tint="#0D1282" />
-        </RelativeLayout>
-
-        <com.google.android.material.divider.MaterialDivider
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/light_grey_blue"
-            app:dividerInsetEnd="16dp"
-            app:dividerInsetStart="16dp" />
-
-        <RelativeLayout
             android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -476,5 +286,18 @@
                 app:tint="#0D1282" />
         </RelativeLayout>
     </LinearLayout>
+
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/load_animation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

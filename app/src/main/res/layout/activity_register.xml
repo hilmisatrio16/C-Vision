@@ -116,12 +116,12 @@
         android:id="@+id/btn_signup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:backgroundTint="@color/periwinkle_blue"
         android:fontFamily="@font/poppins_medium"
         android:minWidth="200dp"
         android:minHeight="54dp"
         android:text="@string/sign_up"
         android:textSize="20sp"
-        android:backgroundTint="@color/periwinkle_blue"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -160,5 +160,17 @@
             app:layout_constraintStart_toStartOf="parent" />
     </LinearLayout>
 
+    <com.airbnb.lottie.LottieAnimationView
+        android:id="@+id/lottie_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:lottie_autoPlay="true"
+        app:lottie_loop="true"
+        app:lottie_rawRes="@raw/load_animation" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
