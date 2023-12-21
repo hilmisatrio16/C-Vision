@@ -16,6 +16,12 @@
         <action
             android:id="@+id/action_profileFragment_to_aboutActivity"
             app:destination="@id/aboutActivity" />
+        <action
+            android:id="@+id/action_profileFragment_to_loginActivity"
+            app:destination="@id/loginActivity"
+            app:launchSingleTop="true"
+            app:popUpTo="@id/profileFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/homeFragment"
@@ -25,6 +31,9 @@
         <action
             android:id="@+id/action_homeFragment_to_articleActivity"
             app:destination="@id/articleActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_detailArticleActivity"
+            app:destination="@id/detailArticleActivity" />
     </fragment>
     <activity
         android:id="@+id/articleActivity"
@@ -41,4 +50,14 @@
         android:name="com.capstoneproject.cvision.ui.profile.AboutActivity"
         android:label="activity_about"
         tools:layout="@layout/activity_about" />
+    <activity
+        android:id="@+id/loginActivity"
+        android:name="com.capstoneproject.cvision.ui.login.LoginActivity"
+        android:label="activity_login"
+        tools:layout="@layout/activity_login" />
+    <activity
+        android:id="@+id/detailArticleActivity"
+        android:name="com.capstoneproject.cvision.ui.article.DetailArticleActivity"
+        android:label="activity_detail_article"
+        tools:layout="@layout/activity_detail_article" />
 </navigation>
