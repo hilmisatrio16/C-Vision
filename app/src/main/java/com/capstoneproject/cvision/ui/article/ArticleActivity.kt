@@ -19,7 +19,7 @@ class ArticleActivity : AppCompatActivity() {
         binding = ActivityArticleBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        binding.topAppBar.setOnClickListener {
+        binding.topAppBar.setNavigationOnClickListener {
             onBackPressed()
         }
 

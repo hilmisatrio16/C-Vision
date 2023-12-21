@@ -7,7 +7,7 @@
     tools:context=".ui.article.ArticleActivity">
 
     <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/appbar"
+        android:id="@+id/appbar_article_page"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,7 +34,7 @@
         android:layout_marginEnd="26dp"
         android:layout_marginBottom="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/appbar"
+        app:layout_constraintTop_toBottomOf="@id/appbar_article_page"
         tools:listitem="@layout/item_article_cataract" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,6 +8,8 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
+import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import androidx.lifecycle.lifecycleScope
 import com.capstoneproject.cvision.MainActivity
 import com.capstoneproject.cvision.databinding.ActivitySplashScreenBinding
@@ -16,6 +18,10 @@ import com.capstoneproject.cvision.ui.onboarding.OnboardingFirstActivity
 class SplashScreenActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashScreenBinding
+
+    private val splashScreenVM by viewModels<SplashScreenViewModel> {
+        SplashScreenViewModelFactory.getInstance(this)
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashScreenBinding.inflate(layoutInflater)
@@ -25,10 +31,21 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             lifecycleScope.launchWhenResumed {
+                checkSessionUser()
+            }
+        }, 2000)
+    }
+
+    private fun checkSessionUser() {
+        splashScreenVM.checkSessionActive().observe(this, Observer {
+            if(it){
+                startActivity(Intent(this@SplashScreenActivity, MainActivity::class.java))
+                finish()
+            }else{
                 startActivity(Intent(this@SplashScreenActivity, OnboardingFirstActivity::class.java))
                 finish()
             }
-        }, 2000)
+        })
     }
 
     private fun setAnimate() {
