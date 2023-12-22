@@ -5,8 +5,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.capstoneproject.cvision.data.repository.AuthenticationRepository
 import com.capstoneproject.cvision.di.Injection
-import com.capstoneproject.cvision.ui.splashscreen.SplashScreenViewModel
-import com.capstoneproject.cvision.ui.splashscreen.SplashScreenViewModelFactory
 
 class ProfileViewModelFactory (private val authenticationRepository: AuthenticationRepository) :
     ViewModelProvider.NewInstanceFactory() {

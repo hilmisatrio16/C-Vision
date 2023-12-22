@@ -8,7 +8,6 @@ import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.databinding.ActivityRegisterBinding
 import com.capstoneproject.cvision.ui.login.LoginActivity
 import com.capstoneproject.cvision.utils.Result

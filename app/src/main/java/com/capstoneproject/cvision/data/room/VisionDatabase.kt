@@ -54,14 +54,14 @@ abstract class VisionDatabase: RoomDatabase() {
             try {
                 if (jsonArrayArticle != null) {
                     for (i in 0 until jsonArrayArticle.length()) {
-                        val item = jsonArrayArticle.getJSONObject(i)
+                        val itemArticle = jsonArrayArticle.getJSONObject(i)
                         articleDao.insertArticles(
                             Article(
-                                item.getInt("id"),
-                                item.getString("title"),
-                                item.getString("content"),
-                                item.getString("urlImage"),
-                                item.getString("urlArt")
+                                itemArticle.getInt("id"),
+                                itemArticle.getString("title"),
+                                itemArticle.getString("content"),
+                                itemArticle.getString("urlImage"),
+                                itemArticle.getString("urlArt")
                             )
                         )
                     }

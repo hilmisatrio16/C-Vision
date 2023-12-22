@@ -1,15 +1,17 @@
 package com.capstoneproject.cvision.data.repository
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
 import com.capstoneproject.cvision.data.dsprefs.AuthPreferences
+import com.capstoneproject.cvision.data.model.auth.InvalidAuthResponse
 import com.capstoneproject.cvision.data.model.auth.RequestLogout
 import com.capstoneproject.cvision.data.model.auth.ResponseLogin
 import com.capstoneproject.cvision.data.model.auth.ResponseLogout
 import com.capstoneproject.cvision.data.model.auth.ResponseRegister
 import com.capstoneproject.cvision.data.remote.retrofit.ApiService
+import com.capstoneproject.cvision.data.remote.retrofit.UserData
 import com.capstoneproject.cvision.utils.Result
-import com.capstoneproject.cvision.utils.handleHttpExceptionMassage
 import kotlinx.coroutines.flow.Flow
 import retrofit2.HttpException
 import java.net.ConnectException
@@ -52,11 +54,24 @@ class AuthenticationRepository(
         emit(Result.Loading)
         try {
             val response = apiService.userLogout(username)
+            Log.e("ERROR AUTH", response.toString())
             emit(Result.Success(response))
         }catch (e: HttpException){
+            Log.e("ERROR AUTH", e.message())
             emit(Result.Error(e.message.toString()))
         }catch (e: ConnectException) {
             emit(Result.Error("No internet connection, please connect to the internet"))
+        } catch (e: Exception) {
+            emit(Result.Error("An unexpected error occurred" + e.message))
+        }
+    }
+
+    fun invalidAuth(username: String): LiveData<Result<InvalidAuthResponse>> = liveData {
+        Log.d("USERNAME", username)
+        try {
+            val response = apiService.invalidateAuth(UserData(username))
+            Log.e("ERROR AUTH", response.toString())
+            emit(Result.Success(response))
         } catch (e: Exception) {
             emit(Result.Error("An unexpected error occurred" + e.message))
         }

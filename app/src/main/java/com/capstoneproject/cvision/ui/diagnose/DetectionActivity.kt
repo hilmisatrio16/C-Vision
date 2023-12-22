@@ -1,16 +1,18 @@
 package com.capstoneproject.cvision.ui.diagnose
 
 import android.Manifest
+import android.content.ContentResolver
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.database.Cursor
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.media.ThumbnailUtils
 import android.net.Uri
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.MediaStore
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
@@ -20,17 +22,15 @@ import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.lifecycle.Observer
 import com.capstoneproject.cvision.R
-import com.capstoneproject.cvision.data.model.predict.RequestPredict
+import com.capstoneproject.cvision.data.model.predict.Penanganan
 import com.capstoneproject.cvision.data.model.predict.ResponsePrediction
-import com.capstoneproject.cvision.data.remote.retrofit.ApiConfig
 import com.capstoneproject.cvision.databinding.ActivityDetectionBinding
+import com.capstoneproject.cvision.ml.ModelUnquant
 import com.capstoneproject.cvision.ui.diagnose.CameraActivity.Companion.CAMERAX_RESULT
-import com.capstoneproject.cvision.utils.Result
-import com.capstoneproject.cvision.utils.reduceFileImage
-import com.capstoneproject.cvision.utils.uriToFile
-import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.launch
-import java.io.File
+import org.tensorflow.lite.DataType
+import org.tensorflow.lite.support.tensorbuffer.TensorBuffer
+import java.nio.ByteBuffer
+import java.nio.ByteOrder
 
 class DetectionActivity : AppCompatActivity() {
 
@@ -80,8 +80,15 @@ class DetectionActivity : AppCompatActivity() {
         binding.btnImageGallery.setOnClickListener { startGallery() }
         binding.btnDetection.setOnClickListener {
 
-            if (currentImageUri != null && token.isNotEmpty()) {
-                predictImageCataract()
+            if (currentImageUri != null) {
+                val image = currentImageUri?.let { it1 -> convertUriToBitmap(this, it1) }
+                val dimensionImage = image?.let { minOf(it.width, image.height) }
+                val thumbnailImage = dimensionImage?.let { ThumbnailUtils.extractThumbnail(image, it, dimensionImage) }
+                val scaledImageInput = thumbnailImage?.let { Bitmap.createScaledBitmap(it, 224, 224, false) }
+                predictImageCataract(scaledImageInput!!)
+
+            }else{
+                Toast.makeText(this, "Please Selected image", Toast.LENGTH_SHORT).show()
             }
 
         }
@@ -91,39 +98,87 @@ class DetectionActivity : AppCompatActivity() {
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    private fun predictImageCataract() {
-        currentImageUri?.let { uriImage ->
-            val imageFile = uriToFile(uriImage, this).reduceFileImage()
-            val tokenUser = token
-            detectionVM.predictCataract(token, dataPredict = RequestPredict(tokenUser, imageFile))
-                .observe(this, Observer {
-                    if (it != null) {
-                        when (it) {
-                            is Result.Loading -> {
-                                Log.d("RESPONSE PREDICT", "load")
-                                binding.lottieLoading.visibility = View.VISIBLE
-                            }
+    private fun convertUriToBitmap(context: Context, uri: Uri): Bitmap? {
 
-                            is Result.Success -> {
-                                binding.lottieLoading.visibility = View.GONE
-                                Log.d("RESPONSE PREDICT", it.data.toString())
-                                showResult(it.data)
-                                Toast.makeText(this, it.data.message, Toast.LENGTH_SHORT).show()
+        var bitmapImage: Bitmap? = null
+        try {
+            val contentResolver: ContentResolver = context.contentResolver
+            val inputStream = contentResolver.openInputStream(uri)
+            bitmapImage = BitmapFactory.decodeStream(inputStream)
+            inputStream?.close()
+        } catch (e: Exception) {
+            e.printStackTrace()
+            Log.e("ERROR", e.message.toString())
+        }
+        return bitmapImage
 
-                            }
+    }
 
-                            is Result.Error -> {
-                                Log.d("RESPONSE PREDICT", it.error)
-                                binding.lottieLoading.visibility = View.GONE
-                                Toast.makeText(this, it.error, Toast.LENGTH_SHORT).show()
-                            }
-                        }
-                    }
-                })
 
+
+
+    private fun predictImageCataract(imageBitmap: Bitmap) {
+        try {
+            val model = ModelUnquant.newInstance(this)
+
+
+            val inputFeature0 = TensorBuffer.createFixedSize(intArrayOf(1, 224, 224, 3), DataType.FLOAT32)
+
+            val byteBuffer = ByteBuffer.allocateDirect(4 * 224 * 224 * 3)
+                byteBuffer.order(ByteOrder.nativeOrder())
+
+            val intValuesArr = IntArray(224 * 224)
+
+            imageBitmap.getPixels(
+                intValuesArr,
+                0,
+                imageBitmap.width,
+                0,
+                0,
+                imageBitmap.width,
+                imageBitmap.height
+            )
+
+            var pixelImg = 0
+
+            for (i in 0 until 224) {
+                for (j in 0 until 224) {
+                    val `val` = intValuesArr[pixelImg++]
+                    byteBuffer.putFloat(((`val` shr 16) and 0xFF) * (1f / 255f))
+                    byteBuffer.putFloat(((`val` shr 8) and 0xFF) * (1f / 255f))
+                    byteBuffer.putFloat((`val` and 0xFF) * (1f / 255f))
+                }
+            }
+
+            inputFeature0.loadBuffer(byteBuffer)
+
+            val outputs = model.process(inputFeature0)
+            val outputFeature0 = outputs.outputFeature0AsTensorBuffer
+
+            val confidencesOutput = outputFeature0.floatArray
+
+            resultModel(confidencesOutput)
+            model.close()
+        } catch (exp: Exception) {
+            Log.e("ERROR", exp.message.toString())
         }
 
+    }
+
+    private fun resultModel(confidencesOutput: FloatArray) {
+        var maxPosition = 0
+        var maxConfidence = 0f
+
+        val classes = arrayOf("Katarak", "Normal")
+
+        for (i in confidencesOutput.indices) {
+                if (confidencesOutput[i] > maxConfidence) {
+                    maxConfidence = confidencesOutput[i]
+                    maxPosition = i
+                    Log.d("Confidence", "${classes[i]}: ${confidencesOutput[i]}")
+                }
+            }
+        showResult(ResponsePrediction(false, "success", Penanganan(maxPosition.toString(), classes[maxPosition])))
     }
 
     private fun showResult(dataRespon: ResponsePrediction) {

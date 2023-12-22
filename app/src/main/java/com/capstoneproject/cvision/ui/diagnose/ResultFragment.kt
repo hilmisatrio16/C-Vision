@@ -6,8 +6,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.databinding.FragmentResultBinding
+import com.capstoneproject.cvision.ui.diagnose.ResultDiagnosisDialogFragment.Companion.RESULT_CLASS
+import com.capstoneproject.cvision.ui.diagnose.ResultDiagnosisDialogFragment.Companion.RESULT_JENIS
 
 
 class ResultFragment : Fragment() {
@@ -30,8 +31,8 @@ class ResultFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            result = it.getString("RESULT JENIS").toString()
-            classPrediction = it.getString("RESULT CLASS").toString()
+            result = it.getString(RESULT_JENIS).toString()
+            classPrediction = it.getString(RESULT_CLASS).toString()
         }
 
         binding.tvDiagnose.text = result

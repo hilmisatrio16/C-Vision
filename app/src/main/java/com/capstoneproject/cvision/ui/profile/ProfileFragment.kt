@@ -1,8 +1,6 @@
 package com.capstoneproject.cvision.ui.profile
 
 import android.annotation.SuppressLint
-import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -10,13 +8,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
-import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.databinding.FragmentProfileBinding
-import com.capstoneproject.cvision.ui.login.LoginActivity
 import com.capstoneproject.cvision.utils.Result
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 
@@ -52,19 +47,6 @@ class ProfileFragment : Fragment() {
             findNavController().navigate(R.id.action_profileFragment_to_aboutActivity)
         }
 
-        profileVM.isSessionActive().observe(viewLifecycleOwner) {
-            if (!it) {
-                findNavController().navigate(R.id.action_profileFragment_to_loginActivity)
-                //clear
-
-//                val intent = Intent(context, LoginActivity::class.java)
-//                intent.flags =
-//                    Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
-//                startActivity(intent)
-//                requireActivity().finish()
-
-            }
-        }
 
         showNameUser()
     }
@@ -94,9 +76,9 @@ class ProfileFragment : Fragment() {
                 dialog.dismiss()
             }
             .setPositiveButton(resources.getString(R.string.logout)) { dialog, _ ->
+
                 if (username.isNotEmpty()) {
-                    Log.d("USERNAME", "|$username|")
-                    profileVM.userLogout(username).observe(viewLifecycleOwner) {
+                    profileVM.invalidAuth(username).observe(viewLifecycleOwner) {
                         if (it != null) {
                             when (it) {
                                 is Result.Success -> {

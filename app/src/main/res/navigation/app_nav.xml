@@ -34,6 +34,9 @@
         <action
             android:id="@+id/action_homeFragment_to_detailArticleActivity"
             app:destination="@id/detailArticleActivity" />
+        <action
+            android:id="@+id/action_homeFragment_to_detectionActivity"
+            app:destination="@id/detectionActivity" />
     </fragment>
     <activity
         android:id="@+id/articleActivity"
@@ -60,4 +63,9 @@
         android:name="com.capstoneproject.cvision.ui.article.DetailArticleActivity"
         android:label="activity_detail_article"
         tools:layout="@layout/activity_detail_article" />
+    <activity
+        android:id="@+id/detectionActivity"
+        android:name="com.capstoneproject.cvision.ui.diagnose.DetectionActivity"
+        android:label="activity_detection"
+        tools:layout="@layout/activity_detection" />
 </navigation>

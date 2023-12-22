@@ -2,7 +2,6 @@ package com.capstoneproject.cvision.data.repository
 
 import androidx.lifecycle.LiveData
 import com.capstoneproject.cvision.data.model.article.Article
-import com.capstoneproject.cvision.data.remote.retrofit.ApiService
 import com.capstoneproject.cvision.data.room.ArticleDao
 
 class ArticleRepository(

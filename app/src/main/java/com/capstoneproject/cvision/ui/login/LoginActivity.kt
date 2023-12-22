@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.capstoneproject.cvision.MainActivity
-import com.capstoneproject.cvision.R
 import com.capstoneproject.cvision.databinding.ActivityLoginBinding
 import com.capstoneproject.cvision.ui.register.RegisterActivity
 import com.capstoneproject.cvision.utils.Result

@@ -4,6 +4,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.capstoneproject.cvision.ui.diagnose.DetailResultFragment
+import com.capstoneproject.cvision.ui.diagnose.ResultDiagnosisDialogFragment.Companion.RESULT_CLASS
+import com.capstoneproject.cvision.ui.diagnose.ResultDiagnosisDialogFragment.Companion.RESULT_JENIS
 import com.capstoneproject.cvision.ui.diagnose.ResultFragment
 
 class SectionPageDiagnosisAdapter (fragment: Fragment, resultClass: String, classPredict: String) :
@@ -29,8 +31,8 @@ class SectionPageDiagnosisAdapter (fragment: Fragment, resultClass: String, clas
 
         //ADD CONSTANT
         fragment!!.arguments = Bundle().apply {
-            putString("RESULT JENIS", result)
-            putString("RESULT CLASS", classPrediction)
+            putString(RESULT_JENIS, result)
+            putString(RESULT_CLASS, classPrediction)
         }
         return fragment as Fragment
     }
@@ -38,4 +40,5 @@ class SectionPageDiagnosisAdapter (fragment: Fragment, resultClass: String, clas
     override fun getItemCount(): Int {
         return 2
     }
+
 }

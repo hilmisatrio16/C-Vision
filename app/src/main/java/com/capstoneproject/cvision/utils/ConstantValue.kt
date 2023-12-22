@@ -5,4 +5,5 @@ object ConstantValue {
     const val BASE_URL = "BuildConfig.BASE_URL"
     const val MAXIMAL_SIZE_IMAGE = 2000000
     const val DATA_ARTICLE = "DATA_ARTICLE"
+
 }

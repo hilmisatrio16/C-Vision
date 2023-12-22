@@ -31,7 +31,8 @@ class SplashScreenActivity : AppCompatActivity() {
 
         Handler(Looper.getMainLooper()).postDelayed({
             lifecycleScope.launchWhenResumed {
-                checkSessionUser()
+                startActivity(Intent(this@SplashScreenActivity, OnboardingFirstActivity::class.java))
+                finish()
             }
         }, 2000)
     }

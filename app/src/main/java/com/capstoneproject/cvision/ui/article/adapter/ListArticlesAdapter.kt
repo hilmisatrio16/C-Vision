@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.capstoneproject.cvision.data.model.article.Article
 import com.capstoneproject.cvision.databinding.ItemArticleCataractBinding
-import com.capstoneproject.cvision.ui.home.adapter.ListArticleAdapter
 
 class ListArticlesAdapter(var onClickItemArticle: ((Article) -> Unit)? = null) :
     RecyclerView.Adapter<ListArticlesAdapter.ViewHolder>() {
